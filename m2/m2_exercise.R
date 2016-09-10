@@ -39,7 +39,7 @@ sum(is.na(movies))
 head(movies$Runtime)
 
 #Note: This next line will throw an error
-mean(movies$Runtime)
+# mean(movies$Runtime)
 
 # Detemine the data type
 class(movies$Runtime)
@@ -55,3 +55,48 @@ head(runtimes)
 
 # Cast the charater string to integer
 movies$Runtime <- as.integer(runtimes)
+mean(movies$Runtime)
+
+#problem 4: Box office uses three units of measure
+head(movies$Box.Office)
+
+#Create a fucntion to convert box office revenue
+convertBoxOffice <- function(boxOffice)
+{
+  stringBoxOffice <- as.character(boxOffice)
+  replacedBoxOffice <- gsub("[$|k|M]", "", stringBoxOffice)
+  numericBoxOffice <- as.numeric(replacedBoxOffice)
+  if (grepl("M", boxOffice)){
+    numericBoxOffice
+  } else if (grepl("k", boxOffice)){
+    numericBoxOffice * 0.001
+  } else {
+    numericBoxOffice * 0.000001
+  }
+}
+
+# Convert box office to single unit of measure (millions)
+movies$Box.Office <- sapply(movies$Box.Office, convertBoxOffice)
+
+# Problem 4 is solved
+head(movies$Box.Office)
+class(movies$Box.Office)
+mean(movies$Box.Office)
+
+#Save data to a CSV file
+write.csv(movies, "Movies_self.csv")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
