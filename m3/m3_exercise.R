@@ -46,7 +46,7 @@ var(movies$Runtime)
 sd(movies$Runtime)
 
 # Analyze the shape of a quantitative variable
-install.packages("moments")
+# install.packages("moments")
 library("moments")
 
 skewness(movies$Runtime)
@@ -63,4 +63,19 @@ plot(density(movies$Runtime))
 # summarize a quantitative variable
 summary(movies$Runtime)
 
+# Bivariate statistics for two qualitative variables
+table(genres$Genre, genres$Rating)
 
+# Bivariate statistics for two quantitative variables
+
+# Covarience
+cov(movies$Runtime, movies$Box.Office)
+cov(movies$Critic.Score, movies$Box.Office)
+
+# Correlation coefficients
+cor(movies$Runtime, movies$Box.Office)
+cor(movies$Critic.Score, movies$Box.Office)
+
+# Bivariate statistics for both a qualitative and quantitative variables
+tapply(movies$Box.Office, movies$Rating, mean)
+tapply(genres$Box.Office, genres$Genre, mean)
