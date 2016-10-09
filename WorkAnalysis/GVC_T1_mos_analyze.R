@@ -33,5 +33,65 @@ stream_1on1_0926 <- read.table(
 )
 Teams <- stream_1on1_0926[grepl("Skype Teams", stream_1on1_0926$participant_1_platform) 
                           & grepl("Skype Teams", stream_1on1_0926$participant_2_platform)
-                          & gre
                           , ]
+
+input_1on1_0926 <- read.table(
+  file = "input_1on1_header_example.txt",
+  sep = ",",
+  header = TRUE,
+  quote = "\"", fill=TRUE
+)
+input_1on1_header <- names(input_1on1_0926)
+write.table(input_1on1_header, "input_1on1_header.csv")
+
+levels(input_1on1_0926$ecs_1_environment)
+levels(input_1on1_0926$csa_1_environment)
+levels(input_1on1_0926$css_1_environment)
+levels(input_1on1_0926$cst_1_environment)
+
+levels(input_1on1_0926$participant_1_version)
+levels(input_1on1_0926$participant_1_platform)
+levels(input_1on1_0926$ngm_1_call_mos_score)
+levels(input_1on1_0926$ngm_1_call_mos_score_tracking_reason)
+
+# GVC 0926 section
+gvc_0926 <- read.table(
+  file = "gvc_0926.txt",
+  sep = ",",
+  header = TRUE,
+  quote = "\"", fill=TRUE
+)
+Teams <- gvc_0926[grepl("Skype Teams", gvc_0926$Platform), ]
+Teams_score <- Teams[grepl("random", Teams$MOSScoreReason) & grepl("production", Teams$Deployment), c("Deployment", "MOSScore", "MOSScoreReason")]
+Teams_score <- Teams[grepl("random", Teams$MOSScoreReason) & grepl("production", Teams$Deployment), ]
+
+gvc_0926_ST <- read.table(
+  file = "gvc_0926_ST.txt",
+  sep = ",",
+  header = TRUE,
+  quote = "\"", fill=TRUE
+)
+
+# ================
+# Restart my analysis
+# ================
+gvc_0923 <- read.table(
+  file = "gvc_0923.txt",
+  sep = ",",
+  header = TRUE,
+  quote = "\"", fill=TRUE
+)
+
+gvc_0923 <- read.table(file = "gvc_0923.csv",  sep = ",",  header = TRUE,  quote = "\"", fill=TRUE)
+gvc_0926 <- read.table(file = "gvc_0926.txt",  sep = ",",  header = TRUE,  quote = "\"", fill=TRUE)
+gvc_0927 <- read.table(file = "gvc_0927.txt",  sep = ",",  header = TRUE,  quote = "\"", fill=TRUE)
+
+p2p_0923 <- read.table(file = "p2p_0923.csv",  sep = ",",  header = TRUE,  quote = "\"", fill=TRUE)
+p2p_0926 <- read.table(file = "p2p_0926.txt",  sep = ",",  header = TRUE,  quote = "\"", fill=TRUE)
+p2p_0927 <- read.table(file = "p2p_0927.txt",  sep = ",",  header = TRUE,  quote = "\"", fill=TRUE)
+
+
+
+getValidCQF <- function(data, name){
+  
+}

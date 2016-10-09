@@ -79,3 +79,5 @@ cor(movies$Critic.Score, movies$Box.Office)
 # Bivariate statistics for both a qualitative and quantitative variables
 tapply(movies$Box.Office, movies$Rating, mean)
 tapply(genres$Box.Office, genres$Genre, mean)
+
+summary(movies)
